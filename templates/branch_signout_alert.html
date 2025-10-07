@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOD Sign-out Reminder</title>
+    <!-- Tan Theme -->
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; color: #333; }
+        .email-container { max-width: 800px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background-color: #C8A879; color: white; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { padding: 30px; }
+        .alert-message { background-color: #FDF8F0; border: 1px solid #EAE0D1; color: #7D643B; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .footer { background-color: #f8f9fa; padding: 0; text-align: center; font-size: 12px; color: #666; }
+        .action-required { background-color: #F8F9FA; border: 1px solid #DEE2E6; color: #343A40; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .branch-info { padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center; margin-bottom: 30px; }
+        .branch-name { font-size: 28px; font-weight: bold; color: #181818; }
+        .branch-label { font-size: 14px; color: #666; }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 800px; margin: 0 auto;" class="email-container">
+        <tr>
+            <td align="center" style="background-color: #C8A879; color: white; padding: 20px;" class="header">
+                {% if header_logo_base64 %}
+                    <img src="data:image/png;base64,{{ header_logo_base64 }}" alt="Business Logo" width="200" style="display: block; border: 0; margin: 0 auto 15px auto;" />
+                {% endif %}
+                <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; color: #FFFFFF;"><strong>IT CORE SYSTEMS</strong></p>
+                <h1 style="font-size: 24px; margin: 0;">Urgent: EOD Branch Sign-out Required</h1>
+                <p style="margin: 5px 0 0 0;">End of Day Processing Alert - {{ current_date }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 30px;" class="content">
+                <div class="alert-message"><strong>⚠️ Action Required:</strong> This is an automated notification regarding a pending End of Day sign-out.</div>
+                <div class="branch-info">
+                    <div class="branch-label">Branch Awaiting Sign-out</div>
+                    <div class="branch-name">{{ branch_name }}</div>
+                </div>
+                <h3 style="border-bottom: 2px solid #EEEEEE; padding-bottom: 5px;">Details</h3>
+                <p>Our monitoring system has detected that the daily sign-out procedure has not yet been completed for your branch. Timely sign-out is critical for the central End of Day (EOD) processes to begin without delay.</p>
+                <p>Failure to sign out promptly can impact business operations.</p>
+                <div class="action-required"><strong>📋 Required Actions:</strong><ul><li>Please ensure the branch sign-out procedure is completed immediately.</li><li>Verify that all daily tasks are finalized before signing out.</li><li>Your action will allow the central EOD processes to commence.</li></ul></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="footer">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="bottom" style="padding: 20px; text-align: left;">
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">This is an automated system notification. Please do not reply to this email.</p>
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">For technical support, contact IT Operations at ext. 6122</p>
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">Generated on {{ timestamp }} | System: Core Systems Monitoring</p>
+                    </td>
+                        <td valign="bottom" align="right" style="padding: 20px; width: 150px; text-align: right;">{% if footer_logo_base64 %}<img src="data:image/png;base64,{{ footer_logo_base64 }}" alt="Company Logo" width="120" style="display: block; border: 0;" />{% endif %}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

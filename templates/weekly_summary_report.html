@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Operations Summary</title>
+    <!-- Dark Grey/Black Theme -->
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; color: #333; }
+        .email-container { max-width: 900px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: #181818; color: white; padding: 30px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 28px; }
+        .week-period { font-size: 16px; opacity: 0.9; margin-top: 5px; }
+        .content { padding: 30px; }
+        .executive-summary { background-color: #f8f9fa; border: 1px solid #dee2e6; color: #181818; padding: 20px; border-radius: 5px; margin-bottom: 30px; }
+        .metric-card { background-color: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border-left: 4px solid #C8A879; }
+        .metric-number { font-size: 32px; font-weight: bold; color: #181818; margin-bottom: 5px; }
+        .metric-label { font-size: 14px; color: #666; }
+        .trend { font-size: 14px; font-weight: bold; }
+        .trend-up { color: #CC192C; } .trend-down { color: #28a745; } .trend-neutral { color: #6c757d; }
+        .section { margin: 30px 0; }
+        .section-title { font-size: 20px; font-weight: bold; color: #181818; margin-bottom: 15px; border-bottom: 2px solid #dee2e6; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f9fa; font-weight: bold; color: #495057; }
+        .data-highlight { font-weight: bold; color: #CC192C; font-size: 16px; }
+        .footer { background-color: #f8f9fa; padding: 0; text-align: center; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 900px; margin: 0 auto;" class="email-container">
+        <tr>
+            <td align="center" class="header">
+                {% if header_logo_base64 %}<img src="data:image/png;base64,{{ header_logo_base64 }}" alt="Business Logo" width="200" style="display: block; border: 0; margin: 0 auto 15px auto;" />{% endif %}
+                <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; color: #FFFFFF;"><strong>IT CORE SYSTEMS</strong></p>
+                <h1 style="font-size: 28px; margin: 0;">📊 Weekly EOD Delay Summary</h1>
+                <div class="week-period">{{ startDate }} to {{ endDate }}</div>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 30px;" class="content">
+                <div class="executive-summary"><h3 style="margin-top: 0;">📈 Executive Summary</h3><p>This report summarizes all automated EOD delay notifications sent during the past week. A total of <strong>{{ metrics.total_incidents }}</strong> delay incidents were recorded and escalated, representing a change of {{ metrics.trend_percent }} from the previous week.</p></div>
+                
+                <table width="100%" border="0" cellpadding="0" cellspacing="20" style="margin: 30px 0;">
+                    <tr>
+                        <td width="50%" class="metric-card"><div class="metric-number">{{ metrics.total_incidents }}</div><div class="metric-label">Total Delay Incidents</div><div class="trend trend-{{ metrics.trend_direction }}">{% if metrics.trend_direction == 'up' %}▲{% elif metrics.trend_direction == 'down' %}▼{% endif %} {{ metrics.trend_percent }} vs last week</div></td>
+                        <td width="50%" class="metric-card"><div class="metric-number">{{ metrics.top_offender_name }}</div><div class="metric-label">Top Problem Area</div><div class="trend trend-neutral">{{ metrics.top_offender_count }} incidents</div></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" class="metric-card"><div class="metric-number">{{ metrics.auth_delays }}</div><div class="metric-label">Authorization Delays</div><div class="trend trend-neutral">Incidents</div></td>
+                        <td width="50%" class="metric-card"><div class="metric-number">{{ metrics.signout_delays }}</div><div class="metric-label">Sign-Out Delays</div><div class="trend trend-neutral">Incidents</div></td>
+                    </tr>
+                </table>
+                
+                <div class="section"><div class="section-title">🚨 Delay Incidents by Branch & Department</div>{% if stats.byGroup %}<table width="100%" border="0" cellpadding="0" cellspacing="0"><thead><tr><th>Group Name</th><th style="text-align: right;">Total Incidents</th></tr></thead><tbody>{% for item in stats.byGroup %}<tr><td>{{ item._id }}</td><td align="right"><span class="data-highlight">{{ item.totalDelays }}</span></td></tr>{% endfor %}</tbody></table>{% else %}<p>No delay incidents were recorded for any specific branch or department this week.</p>{% endif %}</div>
+            </td>
+        </tr>
+        <tr>
+       <td valign="bottom" style="padding: 20px; text-align: left;">
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">This is an automated system notification. Please do not reply to this email.</p>
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">For technical support, contact IT Operations at ext. 6122</p>
+                        <p style="margin: 2px 0; font-size: 12px; color: #666;">Generated on {{ timestamp }} | System: Core Systems Monitoring</p>
+                    </td>
+                    <td valign="bottom" align="right" style="padding: 20px; width: 150px; text-align: right;">{% if footer_logo_base64 %}<img src="data:image/png;base64,{{ footer_logo_base64 }}" alt="Company Logo" width="120" style="display: block; border: 0;" />{% endif %}</td></tr></table></td>
+        </tr>
+    </table>
+</body>
+</html>

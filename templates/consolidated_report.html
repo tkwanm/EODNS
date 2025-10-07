@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ report_title }}</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 0; }
+        .email-container { max-width: 1000px; margin: 0 auto; background-color: #ffffff; }
+        .header { background-color: #CC192C; color: white; padding: 25px 30px; text-align: center; }
+        .header h1 { font-size: 28px; font-weight: 600; margin: 0; }
+        .header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 16px; }
+        .content { padding: 20px; }
+        .stat-card { text-align: center; padding: 20px 10px; border: 1px solid #e9ecef; border-radius: 8px; }
+        .stat-number { font-size: 36px; font-weight: bold; color: #1e3c72; display: block; margin-bottom: 5px; }
+        .stat-label { color: #6c757d; font-size: 14px; font-weight: 500; }
+        .urgent .stat-number { color: #CC192C; }
+        .section { background: white; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e9ecef; overflow: hidden; }
+        .section-header { background-color: #f8f9fa; color: #1e3c72; padding: 15px 20px; border-bottom: 1px solid #e9ecef; }
+        .section-title { font-size: 20px; font-weight: 600; margin: 0; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .data-table th, .data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e9ecef; }
+        .data-table th { background-color: #f1f3f5; font-weight: 600; color: #495057; }
+        .footer { background-color: #f8f9fa; padding: 0; text-align: center; font-size: 12px; color: #666; }
+        .activity-badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; color: #fff; display: inline-block; }
+        .signout-badge { background-color: #C8A879; }
+        .auth-badge { background-color: #CC192C; }
+    </style>
+</head>
+<body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="email-container">
+        <!-- Header -->
+        <tr>
+            <td class="header">
+                {% if header_logo_base64 %}<img src="data:image/png;base64,{{ header_logo_base64 }}" alt="Business Logo" width="200" style="display: block; border: 0; margin: 0 auto 15px auto;" />{% endif %}
+                <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; color: #FFFFFF;"><strong>IT CORE SYSTEMS</strong></p>
+                <h1>{{ report_title }}</h1>
+                <p>Daily Operations Status as of {{ timestamp }}</p>
+            </td>
+        </tr>
+        
+        <!-- Content -->
+        <tr>
+            <td class="content">
+                <!-- Stats Overview Table -->
+                <table width="100%" border="0" cellpadding="0" cellspacing="20" style="margin-bottom: 20px;">
+                    <tr>
+                        <td width="25%" class="stat-card urgent"><div class="stat-number">{{ metrics.total_branch_signouts }}</div><div class="stat-label">Pending Branch Signouts</div></td>
+                        <td width="25%" class="stat-card urgent"><div class="stat-number">{{ metrics.total_teller_signouts }}</div><div class="stat-label">Pending Teller Signouts</div></td>
+                        <td width="25%" class="stat-card urgent"><div class="stat-number">{{ metrics.total_financial_value }}</div><div class="stat-label">Total Financial Value</div></td>
+                        <td width="25%" class="stat-card"><div class="stat-number">{{ metrics.total_common_auths }}</div><div class="stat-label">Pending Common Auths</div></td>
+                    </tr>
+                </table>
+
+                <!-- Main Data Section -->
+                <div class="section">
+                    <div class="section-header"><h2 class="section-title">Detailed Pending Items</h2></div>
+                    {% if grouped_data %}
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Group (Code)</th>
+                                    <th>Activity Type</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- MODIFICATION: Loop through the new (code, name) tuple key -->
+                            {% for (branch_code, group_name), activities in grouped_data.items() %}
+                                {% for activity in activities %}
+                                <tr>
+                                    {% if loop.first %}
+                                        <td rowspan="{{ activities|length }}" style="vertical-align: top; border-bottom: 2px solid #adb5bd;">
+                                            <!-- MODIFICATION: Display name and code from the tuple -->
+                                            <strong>{{ group_name }}</strong> ({{ branch_code }})
+                                        </td>
+                                    {% endif %}
+                                    
+                                    <td>
+                                        {% if activity.type == 'Branch Sign-out' %}<span class="activity-badge signout-badge">Branch Sign-out</span>
+                                        {% elif activity.type == 'Teller Sign-out' %}<span class="activity-badge signout-badge">Teller Sign-out</span>
+                                        {% elif activity.type == 'Financial Auth' %}<span class="activity-badge auth-badge">Financial Auth</span>
+                                        {% elif activity.type == 'Common Auth' %}<span class="activity-badge auth-badge">Common Auth</span>
+                                        {% else %}{{ activity.type }}{% endif %}
+                                    </td>
+                                    <td>{{ activity.details }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <div style="text-align: center; padding: 40px 20px; color: #6c757d;">
+                            <h3 style="margin: 0;">✅ All Clear!</h3>
+                            <p>No pending operational items were found during this run.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+            <td class="footer">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="bottom" style="padding: 20px; text-align: left;">
+                            <p style="margin: 2px 0; font-size: 12px; color: #666;">This is an automated system notification. Please do not reply to this email.</p>
+                            <p style="margin: 2px 0; font-size: 12px; color: #666;">For technical support, contact IT Operations at ext. 6122</p>
+                            <p style="margin: 2px 0; font-size: 12px; color: #666;">Generated on {{ timestamp }} | System: Core Systems Monitoring</p>
+                        </td>
+                        <td valign="bottom" align="right" style="padding: 20px; width: 150px; text-align: right;">
+                            {% if footer_logo_base64 %}
+                                <img src="data:image/png;base64,{{ footer_logo_base64 }}" alt="Company Logo" width="120" style="display: block; border: 0;" />
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

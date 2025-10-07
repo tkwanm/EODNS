@@ -1,0 +1,76 @@
+2025-09-23 17:00:32,970 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250923_eod_monitor.log
+2025-09-23 17:00:32,974 - [INFO] - root - (daily_monitor.py).main(16) - --- Starting Daily EOD Monitoring Script ---
+2025-09-23 17:00:32,974 - [INFO] - root - (daily_monitor.py).main(17) - Email mode: LOG
+2025-09-23 17:00:32,976 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-23 17:00:32,993 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-23 17:00:32,995 - [INFO] - root - (daily_monitor.py).main(23) - Executing task: Daily Monitoring
+2025-09-23 17:00:32,996 - [INFO] - root - (scenarios.py).run_daily_monitoring(13) - --- Starting Daily Branch Sign-out Monitoring ---
+2025-09-23 17:00:32,996 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-23 17:00:33,126 - [WARNING] - root - (scenarios.py)._monitor_branch_signouts(41) - Configuration not found for branch code 100. Skipping.
+2025-09-23 17:00:33,126 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: EOD Branch Sign-out Pending for Asakhe' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,126 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 1
+2025-09-23 17:00:33,126 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: EOD Branch Sign-out Pending for Commercial' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,142 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 14
+2025-09-23 17:00:33,148 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: EOD Branch Sign-out Pending for Ka-Shali' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,149 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 12
+2025-09-23 17:00:33,149 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: EOD Branch Sign-out Pending for Nhlangano' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,149 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 3
+2025-09-23 17:00:33,149 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,158 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-23 17:00:33,160 - [INFO] - root - (scenarios.py).run_daily_monitoring(16) - --- Starting Branch Transaction Authorization Monitoring ---
+2025-09-23 17:00:33,160 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-23 17:00:33,197 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Urgent Action: Pending Transaction Authorizations for Asakhe' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,197 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: authorization for 1
+2025-09-23 17:00:33,197 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Urgent Action: Pending Transaction Authorizations for Commercial' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,197 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: authorization for 14
+2025-09-23 17:00:33,197 - [INFO] - root - (scenarios.py).run_daily_monitoring(22) - --- Starting Pending Teller Sign-out Monitoring ---
+2025-09-23 17:00:33,197 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(82) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-23 17:00:33,221 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: Pending Teller Sign-outs at Asakhe' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,224 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 1
+2025-09-23 17:00:33,232 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: Pending Teller Sign-outs at Ezulwini' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,236 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 9
+2025-09-23 17:00:33,236 - [INFO] - root - (scenarios.py).run_daily_monitoring(25) - --- Starting Common Authorization Queue Monitoring ---
+2025-09-23 17:00:33,236 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(76) - Querying for pending common authorizations.
+2025-09-23 17:00:33,251 - [INFO] - root - (data_manager.py).get_head_office_user_map(70) - Fetching Head Office user-to-department map from Oracle.
+2025-09-23 17:00:33,252 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: Pending Common Authorizations for Asakhe' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,259 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: common-auth for 1
+2025-09-23 17:00:33,260 - [WARNING] - root - (email_service.py).send_email(58) - Recipient list for subject 'Action Required: Pending Common Authorizations for Ka-Shali' was empty after cleaning. Skipping email.
+2025-09-23 17:00:33,260 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: common-auth for 12
+2025-09-23 17:00:33,260 - [INFO] - root - (daily_monitor.py).main(26) - Daily monitoring script finished successfully.
+2025-09-23 17:02:04,056 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250923_eod_monitor.log
+2025-09-23 17:02:04,060 - [INFO] - root - (daily_monitor.py).main(16) - --- Starting Daily EOD Monitoring Script ---
+2025-09-23 17:02:04,060 - [INFO] - root - (daily_monitor.py).main(17) - Email mode: SEND
+2025-09-23 17:02:04,062 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-23 17:02:04,067 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-23 17:02:04,068 - [INFO] - root - (daily_monitor.py).main(23) - Executing task: Daily Monitoring
+2025-09-23 17:02:04,069 - [INFO] - root - (scenarios.py).run_daily_monitoring(13) - --- Starting Daily Branch Sign-out Monitoring ---
+2025-09-23 17:02:04,069 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-23 17:02:04,162 - [WARNING] - root - (scenarios.py)._monitor_branch_signouts(41) - Configuration not found for branch code 100. Skipping.
+2025-09-23 17:02:04,884 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Asakhe' to Tandzisile.Zwane@sbs.co.sz, Nomhle.Nxumalo-Vilakati@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Innocent.Sihlongonyane@sbs.co.sz, Wesley.Groening@sbs.co.sz, Nomfundo.Sibandze@sbs.co.sz
+2025-09-23 17:02:04,900 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 1
+2025-09-23 17:02:05,486 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Commercial' to Mphumuzi.Stewart@sbs.co.sz, Sibusiso.Dlamini2@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Xolile.Mamba@sbs.co.sz, Wesley.Groening@sbs.co.sz
+2025-09-23 17:02:05,486 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 14
+2025-09-23 17:02:06,156 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Ka-Shali' to itdept@sbs.co.sz, Simangele.Thwala@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Sanele.Dlamini@sbs.co.sz, Wesley.Groening@sbs.co.sz
+2025-09-23 17:02:06,156 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 12
+2025-09-23 17:02:06,804 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Nhlangano' to itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Nkosingiphile.Kunene@sbs.co.sz, Vukani.Dlamini@sbs.co.sz, Wesley.Groening@sbs.co.sz, Zanele.Vilakati@sbs.co.sz
+2025-09-23 17:02:06,804 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 3
+2025-09-23 17:02:07,458 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' to Fezile.Dlamini@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Sibonelelo.Sukati@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz, Wesley.Groening@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz
+2025-09-23 17:02:07,458 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-23 17:02:07,458 - [INFO] - root - (scenarios.py).run_daily_monitoring(16) - --- Starting Branch Transaction Authorization Monitoring ---
+2025-09-23 17:02:07,458 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-23 17:02:08,034 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Urgent Action: Pending Transaction Authorizations for Commercial' to Mphumuzi.Stewart@sbs.co.sz, Sibusiso.Dlamini2@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Xolile.Mamba@sbs.co.sz, Wesley.Groening@sbs.co.sz
+2025-09-23 17:02:08,038 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: authorization for 14
+2025-09-23 17:02:08,042 - [INFO] - root - (scenarios.py).run_daily_monitoring(22) - --- Starting Pending Teller Sign-out Monitoring ---
+2025-09-23 17:02:08,044 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(82) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-23 17:02:08,704 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Teller Sign-outs at Asakhe' to Tandzisile.Zwane@sbs.co.sz, Nomhle.Nxumalo-Vilakati@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Innocent.Sihlongonyane@sbs.co.sz, Wesley.Groening@sbs.co.sz, Nomfundo.Sibandze@sbs.co.sz
+2025-09-23 17:02:08,704 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 1
+2025-09-23 17:02:09,272 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Teller Sign-outs at Ezulwini' to Sikhumbuzo.Dlamini@sbs.co.sz, Ntombikayise.Malaza@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Wesley.Groening@sbs.co.sz
+2025-09-23 17:02:09,272 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 9
+2025-09-23 17:02:09,280 - [INFO] - root - (scenarios.py).run_daily_monitoring(25) - --- Starting Common Authorization Queue Monitoring ---
+2025-09-23 17:02:09,280 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(76) - Querying for pending common authorizations.
+2025-09-23 17:02:09,280 - [INFO] - root - (data_manager.py).get_head_office_user_map(70) - Fetching Head Office user-to-department map from Oracle.
+2025-09-23 17:02:09,953 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Common Authorizations for Asakhe' to Tandzisile.Zwane@sbs.co.sz, Nomhle.Nxumalo-Vilakati@sbs.co.sz, itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Innocent.Sihlongonyane@sbs.co.sz, Wesley.Groening@sbs.co.sz, Nomfundo.Sibandze@sbs.co.sz
+2025-09-23 17:02:09,955 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: common-auth for 1
+2025-09-23 17:02:10,453 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Common Authorizations for Ka-Shali' to itdept@sbs.co.sz, Simangele.Thwala@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz, Sanele.Dlamini@sbs.co.sz, Wesley.Groening@sbs.co.sz
+2025-09-23 17:02:10,453 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: common-auth for 12
+2025-09-23 17:02:10,453 - [INFO] - root - (daily_monitor.py).main(26) - Daily monitoring script finished successfully.

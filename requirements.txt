@@ -1,0 +1,5 @@
+oracledb
+pymongo
+python-dotenv
+Jinja2
+python-dateutil

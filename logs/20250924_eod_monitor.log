@@ -1,0 +1,69 @@
+2025-09-24 17:00:38,091 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250924_eod_monitor.log
+2025-09-24 17:00:38,091 - [INFO] - root - (daily_monitor.py).main(25) - --- Starting Daily EOD Monitoring Script ---
+2025-09-24 17:00:38,091 - [INFO] - root - (daily_monitor.py).main(26) - Email mode: SEND
+2025-09-24 17:00:38,104 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-24 17:00:38,111 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-24 17:00:38,111 - [INFO] - root - (daily_monitor.py).main(38) - --- Running: Branch Sign-out Monitoring ---
+2025-09-24 17:00:38,111 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-24 17:00:39,226 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' to Lindelwe.Myeni@sbs.co.sz, Fezile.Dlamini@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz
+2025-09-24 17:00:39,226 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-24 17:00:39,226 - [INFO] - root - (scenarios.py)._monitor_branch_signouts(26) - Branch 100 sign-out is pending but is excluded from notifications per business rules.
+2025-09-24 17:00:39,226 - [INFO] - root - (daily_monitor.py).main(41) - --- Running: Branch Financial Authorization Monitoring ---
+2025-09-24 17:00:39,241 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-24 17:00:40,061 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Urgent Action: Pending Transaction Authorizations for Matsapha' to Lindelwe.Myeni@sbs.co.sz, Fezile.Dlamini@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz
+2025-09-24 17:00:40,077 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: authorization for 5
+2025-09-24 17:00:40,077 - [INFO] - root - (daily_monitor.py).main(47) - --- Running: Teller Sign-out Monitoring ---
+2025-09-24 17:00:40,077 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(83) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-24 17:00:40,092 - [INFO] - root - (scenarios.py)._monitor_teller_signouts(103) - Teller Signouts: No pending items found.
+2025-09-24 17:00:40,092 - [INFO] - root - (daily_monitor.py).main(50) - --- Running: Common Authorization Queue Monitoring ---
+2025-09-24 17:00:40,092 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(77) - Querying for pending common authorizations.
+2025-09-24 17:00:40,127 - [CRITICAL] - root - (daily_monitor.py).main(61) - A critical error occurred during the daily monitoring run: ORA-00933: SQL command not properly ended
+Help: https://docs.oracle.com/error-help/db/ora-00933/
+Traceback (most recent call last):
+  File "C:\Users\SBS342.SBS\Documents\SBS342\Documents\Work projects\EOD_Notification_System\daily_monitor.py", line 51, in main
+    branch_common_auths, ho_common_auths = _monitor_common_authorizations(data_manager, email_service)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SBS342.SBS\Documents\SBS342\Documents\Work projects\EOD_Notification_System\src\scenarios.py", line 124, in _monitor_common_authorizations
+    pending_items = data_manager.get_pending_common_authorizations()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SBS342.SBS\Documents\SBS342\Documents\Work projects\EOD_Notification_System\src\data_manager.py", line 23, in get_pending_common_authorizations
+    def get_pending_common_authorizations(self): return self._op_source.get_pending_common_authorizations()
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SBS342.SBS\Documents\SBS342\Documents\Work projects\EOD_Notification_System\src\data_manager.py", line 78, in get_pending_common_authorizations
+    return self._execute_query(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SBS342.SBS\Documents\SBS342\Documents\Work projects\EOD_Notification_System\src\data_manager.py", line 46, in _execute_query
+    cursor.execute(query)
+  File "C:\Users\SBS342.SBS\AppData\Local\Programs\Python\Python312\Lib\site-packages\oracledb\cursor.py", line 714, in execute
+    impl.execute(self)
+  File "src/oracledb/impl/thin/cursor.pyx", line 277, in oracledb.thin_impl.ThinCursorImpl.execute
+  File "src/oracledb/impl/thin/protocol.pyx", line 482, in oracledb.thin_impl.Protocol._process_single_message
+  File "src/oracledb/impl/thin/protocol.pyx", line 483, in oracledb.thin_impl.Protocol._process_single_message
+  File "src/oracledb/impl/thin/protocol.pyx", line 475, in oracledb.thin_impl.Protocol._process_message
+  File "src/oracledb/impl/thin/messages/base.pyx", line 102, in oracledb.thin_impl.Message._check_and_raise_exception
+oracledb.exceptions.DatabaseError: ORA-00933: SQL command not properly ended
+Help: https://docs.oracle.com/error-help/db/ora-00933/
+2025-09-24 17:02:34,871 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250924_eod_monitor.log
+2025-09-24 17:02:34,872 - [INFO] - root - (daily_monitor.py).main(25) - --- Starting Daily EOD Monitoring Script ---
+2025-09-24 17:02:34,872 - [INFO] - root - (daily_monitor.py).main(26) - Email mode: SEND
+2025-09-24 17:02:34,872 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-24 17:02:34,883 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-24 17:02:34,883 - [INFO] - root - (daily_monitor.py).main(38) - --- Running: Branch Sign-out Monitoring ---
+2025-09-24 17:02:34,884 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-24 17:02:36,572 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' to Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz, Fezile.Dlamini@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz
+2025-09-24 17:02:36,588 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-24 17:02:36,588 - [INFO] - root - (scenarios.py)._monitor_branch_signouts(26) - Branch 100 sign-out is pending but is excluded from notifications per business rules.
+2025-09-24 17:02:36,588 - [INFO] - root - (daily_monitor.py).main(41) - --- Running: Branch Financial Authorization Monitoring ---
+2025-09-24 17:02:36,588 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-24 17:02:37,674 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Urgent Action: Pending Transaction Authorizations for Matsapha' to Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz, Fezile.Dlamini@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz
+2025-09-24 17:02:37,708 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: authorization for 5
+2025-09-24 17:02:37,708 - [INFO] - root - (daily_monitor.py).main(47) - --- Running: Teller Sign-out Monitoring ---
+2025-09-24 17:02:37,709 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(83) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-24 17:02:37,737 - [INFO] - root - (scenarios.py)._monitor_teller_signouts(103) - Teller Signouts: No pending items found.
+2025-09-24 17:02:37,737 - [INFO] - root - (daily_monitor.py).main(50) - --- Running: Common Authorization Queue Monitoring ---
+2025-09-24 17:02:37,737 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(77) - Querying for pending common authorizations.
+2025-09-24 17:02:37,762 - [INFO] - root - (scenarios.py)._monitor_common_authorizations(126) - Common Auths: No pending items found.
+2025-09-24 17:02:38,791 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Branch Operations Report - 24-Sep-2025' to itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz
+2025-09-24 17:02:38,791 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Credit Department Report', skipping report.
+2025-09-24 17:02:38,791 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Finance Department Report', skipping report.
+2025-09-24 17:02:38,791 - [INFO] - root - (daily_monitor.py).main(58) - Daily monitoring script finished successfully.

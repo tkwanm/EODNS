@@ -1,0 +1,31 @@
+2025-09-27 14:00:25,447 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250927_eod_monitor.log
+2025-09-27 14:00:25,447 - [INFO] - root - (daily_monitor.py).main(25) - --- Starting Daily EOD Monitoring Script ---
+2025-09-27 14:00:25,448 - [INFO] - root - (daily_monitor.py).main(26) - Email mode: SEND
+2025-09-27 14:00:25,449 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-27 14:00:25,466 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-27 14:00:25,469 - [INFO] - root - (daily_monitor.py).main(38) - --- Running: Branch Sign-out Monitoring ---
+2025-09-27 14:00:25,469 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-27 14:00:25,600 - [INFO] - root - (scenarios.py)._monitor_branch_signouts(26) - Branch 100 sign-out is pending but is excluded from notifications per business rules.
+2025-09-27 14:00:26,499 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Manzini 1 ' to Funekile.Dlamini@sbs.co.sz, Sindi.Simelane@sbs.co.sz, Thembinkosi.Vilakati@sbs.co.sz
+2025-09-27 14:00:26,499 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 2
+2025-09-27 14:00:27,227 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' to Fezile.Dlamini@sbs.co.sz, Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz
+2025-09-27 14:00:27,227 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-27 14:00:27,799 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Sikhulile' to Busisiwe.Mamba@sbs.co.sz, Josephine.Dlamini@sbs.co.sz
+2025-09-27 14:00:27,799 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 12
+2025-09-27 14:00:27,799 - [INFO] - root - (daily_monitor.py).main(41) - --- Running: Branch Financial Authorization Monitoring ---
+2025-09-27 14:00:27,799 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-27 14:00:27,799 - [INFO] - root - (scenarios.py)._monitor_branch_authorizations(52) - Branch Financial Auths: No pending items found.
+2025-09-27 14:00:27,799 - [INFO] - root - (daily_monitor.py).main(47) - --- Running: Teller Sign-out Monitoring ---
+2025-09-27 14:00:27,799 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(83) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-27 14:00:28,449 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Teller Sign-outs at Asakhe' to Nomfundo.Sibandze@sbs.co.sz, Tandzisile.Zwane@sbs.co.sz, Innocent.Sihlongonyane@sbs.co.sz, Nomhle.Nxumalo-Vilakati@sbs.co.sz
+2025-09-27 14:00:28,460 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 1
+2025-09-27 14:00:29,121 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Teller Sign-outs at Matsapha' to Fezile.Dlamini@sbs.co.sz, Sibonelelo.Sukati@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz
+2025-09-27 14:00:29,121 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 5
+2025-09-27 14:00:29,121 - [INFO] - root - (daily_monitor.py).main(50) - --- Running: Common Authorization Queue Monitoring ---
+2025-09-27 14:00:29,121 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(77) - Querying for pending common authorizations.
+2025-09-27 14:00:29,699 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Common Authorizations for Manzini 1 ' to Funekile.Dlamini@sbs.co.sz, Sindi.Simelane@sbs.co.sz, Thembinkosi.Vilakati@sbs.co.sz
+2025-09-27 14:00:29,699 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: common-auth for 2
+2025-09-27 14:00:30,239 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Branch Operations Report - 27-Sep-2025' to itdept@sbs.co.sz, Nomsa.Magagula2@sbs.co.sz
+2025-09-27 14:00:30,239 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Credit Department Report', skipping report.
+2025-09-27 14:00:30,239 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Finance Department Report', skipping report.
+2025-09-27 14:00:30,239 - [INFO] - root - (daily_monitor.py).main(58) - Daily monitoring script finished successfully.

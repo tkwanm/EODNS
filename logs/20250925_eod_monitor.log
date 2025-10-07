@@ -1,0 +1,23 @@
+2025-09-25 17:00:44,045 - [INFO] - root - (logger_setup.py).setup_logging(43) - Logging configured to write to console and file: logs\20250925_eod_monitor.log
+2025-09-25 17:00:44,045 - [INFO] - root - (daily_monitor.py).main(25) - --- Starting Daily EOD Monitoring Script ---
+2025-09-25 17:00:44,045 - [INFO] - root - (daily_monitor.py).main(26) - Email mode: SEND
+2025-09-25 17:00:44,050 - [INFO] - root - (data_manager.py).__init__(38) - Oracle connection pool created successfully.
+2025-09-25 17:00:44,085 - [INFO] - root - (data_manager.py).__init__(90) - Connected to MongoDB.
+2025-09-25 17:00:44,091 - [INFO] - root - (daily_monitor.py).main(38) - --- Running: Branch Sign-out Monitoring ---
+2025-09-25 17:00:44,091 - [INFO] - root - (data_manager.py).get_pending_signouts(53) - Querying for pending signouts with filter: TRUNC(SYSDATE)
+2025-09-25 17:00:48,728 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: EOD Branch Sign-out Pending for Matsapha' to Sibonelelo.Sukati@sbs.co.sz, Fezile.Dlamini@sbs.co.sz, Lindelwe.Myeni@sbs.co.sz, Israel.Mngomezulu@sbs.co.sz, Nosipho.Nkambule@sbs.co.sz
+2025-09-25 17:00:48,746 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: sign-out for 5
+2025-09-25 17:00:48,746 - [INFO] - root - (scenarios.py)._monitor_branch_signouts(26) - Branch 100 sign-out is pending but is excluded from notifications per business rules.
+2025-09-25 17:00:48,746 - [INFO] - root - (daily_monitor.py).main(41) - --- Running: Branch Financial Authorization Monitoring ---
+2025-09-25 17:00:48,746 - [INFO] - root - (data_manager.py).get_branch_authorizations(59) - Querying for BRANCH pending authorizations with filter: TRUNC(SYSDATE)
+2025-09-25 17:00:48,757 - [INFO] - root - (scenarios.py)._monitor_branch_authorizations(52) - Branch Financial Auths: No pending items found.
+2025-09-25 17:00:48,757 - [INFO] - root - (daily_monitor.py).main(47) - --- Running: Teller Sign-out Monitoring ---
+2025-09-25 17:00:48,758 - [INFO] - root - (data_manager.py).get_pending_teller_signouts(83) - Querying for pending teller sign-outs with filter: TRUNC(SYSDATE)
+2025-09-25 17:00:50,185 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Action Required: Pending Teller Sign-outs at Asakhe' to Nomhle.Nxumalo-Vilakati@sbs.co.sz, Tandzisile.Zwane@sbs.co.sz, Nomfundo.Sibandze@sbs.co.sz, Innocent.Sihlongonyane@sbs.co.sz
+2025-09-25 17:00:50,200 - [INFO] - root - (data_manager.py).log_notification(104) - Logged notification: teller-sign-out for 1
+2025-09-25 17:00:50,200 - [INFO] - root - (daily_monitor.py).main(50) - --- Running: Common Authorization Queue Monitoring ---
+2025-09-25 17:00:50,200 - [INFO] - root - (data_manager.py).get_pending_common_authorizations(77) - Querying for pending common authorizations.
+2025-09-25 17:00:50,780 - [INFO] - root - (email_service.py).send_email(88) - Successfully sent email with subject 'Branch Operations Report - 25-Sep-2025' to Nomsa.Magagula2@sbs.co.sz, itdept@sbs.co.sz
+2025-09-25 17:00:50,782 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Credit Department Report', skipping report.
+2025-09-25 17:00:50,782 - [INFO] - root - (scenarios.py).generate_and_send_report(165) - No data for 'Finance Department Report', skipping report.
+2025-09-25 17:00:50,782 - [INFO] - root - (daily_monitor.py).main(58) - Daily monitoring script finished successfully.
